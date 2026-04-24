@@ -134,14 +134,13 @@ class Scene(BaseIkeaModel):
     undo_allowed_duration: int
 
     def reload(self) -> Scene:
-        data = self.dirigera_client.get(route=f"/scenes/{self.id}")
-        return Scene(dirigeraClient=self.dirigera_client, **data)
+        pass
 
     def trigger(self) -> None:
-        self.dirigera_client.post(route=f"/scenes/{self.id}/trigger")
+        pass
 
     def undo(self) -> None:
-        self.dirigera_client.post(route=f"/scenes/{self.id}/undo")
+        pass
 
 
 def dict_to_scene(data: Dict[str, Any], dirigera_client: AbstractSmartHomeHub) -> Scene:

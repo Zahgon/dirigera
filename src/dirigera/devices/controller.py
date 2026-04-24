@@ -15,18 +15,10 @@ class Controller(Device):
     attributes: ControllerAttributes
 
     def reload(self) -> Controller:
-        data = self.dirigera_client.get(route=f"/devices/{self.id}")
-        return Controller(dirigeraClient=self.dirigera_client, **data)
+        pass
 
     def set_name(self, name: str) -> None:
-        if "customName" not in self.capabilities.can_receive:
-            raise AssertionError(
-                "This controller does not support the set_name function"
-            )
-
-        data = [{"attributes": {"customName": name}}]
-        self.dirigera_client.patch(route=f"/devices/{self.id}", data=data)
-        self.attributes.custom_name = name
+        pass
 
 
 def dict_to_controller(

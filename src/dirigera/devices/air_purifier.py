@@ -31,21 +31,13 @@ class AirPurifier(Device):
     attributes: AirPurifierAttributes
 
     def reload(self) -> AirPurifier:
-        data = self.dirigera_client.get(route=f"/devices/{self.id}")
-        return AirPurifier(dirigeraClient=self.dirigera_client, **data)
+        pass
 
     def set_name(self, name: str) -> None:
-        if "customName" not in self.capabilities.can_receive:
-            raise AssertionError("This airpurifier does not support the set_name function")
-
-        data = [{"attributes": {"customName": name}}]
-        self.dirigera_client.patch(route=f"/devices/{self.id}", data=data)
-        self.attributes.custom_name = name
+        pass
 
     def set_fan_mode(self, fan_mode: FanModeEnum) -> None:
-        data = [{"attributes": {"fanMode": fan_mode.value}}]
-        self.dirigera_client.patch(route=f"/devices/{self.id}", data=data)
-        self.attributes.fan_mode = fan_mode
+        pass
 
     def set_motor_state(self, motor_state: int) -> None:
         """
@@ -54,26 +46,13 @@ class AirPurifier(Device):
         0 == off
         1 == auto
         """
-        desired_motor_state = int(motor_state)
-        if desired_motor_state < 0 or desired_motor_state > 50:
-            raise ValueError("Motor state must be a value between 0 and 50")
-
-        data = [{"attributes": {"motorState": desired_motor_state}}]
-        self.dirigera_client.patch(route=f"/devices/{self.id}", data=data)
-        self.attributes.motor_state = desired_motor_state
+        pass
 
     def set_child_lock(self, child_lock: bool) -> None:
-        if "childLock" not in self.capabilities.can_receive:
-            raise AssertionError("This air-purifier does not support the child lock function")
-
-        data = [{"attributes": {"childLock": child_lock}}]
-        self.dirigera_client.patch(route=f"/devices/{self.id}", data=data)
-        self.attributes.child_lock = child_lock
+        pass
 
     def set_status_light(self, light_state: bool) -> None:
-        data = [{"attributes": {"statusLight": light_state}}]
-        self.dirigera_client.patch(route=f"/devices/{self.id}", data=data)
-        self.attributes.status_light = light_state
+        pass
 
 def dict_to_air_purifier(data: Dict[str, Any], dirigera_client: AbstractSmartHomeHub) -> AirPurifier:
     return AirPurifier(

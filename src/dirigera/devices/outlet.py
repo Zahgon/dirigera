@@ -30,26 +30,13 @@ class Outlet(Device):
     attributes: OutletAttributes
 
     def reload(self) -> Outlet:
-        data = self.dirigera_client.get(route=f"/devices/{self.id}")
-        return Outlet(dirigeraClient=self.dirigera_client, **data)
+        pass
 
     def set_name(self, name: str) -> None:
-        if "customName" not in self.capabilities.can_receive:
-            raise AssertionError(
-                "This device does not support the customName capability"
-            )
-
-        data = [{"attributes": {"customName": name}}]
-        self.dirigera_client.patch(route=f"/devices/{self.id}", data=data)
-        self.attributes.custom_name = name
+        pass
 
     def set_on(self, outlet_on: bool) -> None:
-        if "isOn" not in self.capabilities.can_receive:
-            raise AssertionError("This device does not support the isOn function")
-
-        data = [{"attributes": {"isOn": outlet_on}}]
-        self.dirigera_client.patch(route=f"/devices/{self.id}", data=data)
-        self.attributes.is_on = outlet_on
+        pass
 
     def set_startup_behaviour(self, behaviour: StartupEnum) -> None:
         """
@@ -59,9 +46,7 @@ class Outlet(Device):
         When set to START_PREVIOUS the device will resume its state at power outage.
         When set to START_TOGGLE, a sequence of power-off -> power-on, will toggle the device state
         """
-        data = [{"attributes": {"startupOnOff": behaviour.value}}]
-        self.dirigera_client.patch(route=f"/devices/{self.id}", data=data)
-        self.attributes.startup_on_off = behaviour
+        pass
 
 
 def dict_to_outlet(

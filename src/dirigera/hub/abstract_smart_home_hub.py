@@ -29,15 +29,13 @@ class FakeDirigeraHub(AbstractSmartHomeHub):
         self.delete_actions: List = []
 
     def patch(self, route: str, data: List[Dict[str, Any]]) -> Any:
-        self.patch_actions.append({"route": route, "data": data})
-        return {"route": route, "data": data}
+        pass
 
     def get(self, route: str) -> Any:
-        self.get_actions.append({"route": route})
-        return self.get_action_replys[route]
+        pass
 
     def post(self, route: str, data: Optional[Dict[str, Any]] = None) -> Any:
-        self.post_actions.append({"route": route, "data": data})
+        pass
 
     def delete(self, route: str, data: Optional[Dict[str, Any]] = None) -> Any:
-        self.delete_actions.append({"route": route, "data": data})
+        pass

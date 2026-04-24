@@ -56,4 +56,4 @@ class Device(BaseIkeaModel):
     is_hidden: Optional[bool] = None
 
     def _reload(self, data: Dict[str, Any]) -> Device:
-        return Device(**data)
+        pass
